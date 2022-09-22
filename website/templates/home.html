@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Home2{% endblock %}
+
+{% block content %}
+
+
+<img src="{{ url_for('views.video_feed') }}">
+<form method="post" action="{{ url_for('views.task') }}">
+    <input type="submit" value="Stop/Start" name="stop" />
+    <input type="submit" value="Reset" name="Reset" />
+    <input type="submit" value="Take" name="Take" />
+</form>
+
+<ul>
+        {% for massage in massages %}
+            <li>{{ massage }}</li>
+        {% endfor %}
+</ul>
+{% endblock %}

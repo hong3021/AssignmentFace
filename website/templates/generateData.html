@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Home2{% endblock %}
+
+
+
+
+{% block content %}
+<form method="post" action="{{ url_for('GenerateData.generate') }}">
+    <h3>Capture Photo</h3>
+    <input type="submit" value="Stop/Start" name="Start" />
+    <h3>Process photo</h3>
+    <input type="submit" value="process" name="process" />
+    <h3>Train</h3>
+    <input type="submit" value="train" name="Train" />
+</form>
+{% endblock %}
