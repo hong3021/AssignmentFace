@@ -20,7 +20,7 @@ Recognition
 7. Run the **Recognition.py** in _website/src_ to recognize vision
 
 
-Roconition with GUI 
+Rocongition with GUI 
 ===================
 1 run **main.py** file in root dicrectory 
 
