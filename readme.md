@@ -1,4 +1,13 @@
-Due the privacy the project did not contain Dataset.
+Due the privacy the project did not contain Dataset Exp: photo.
+
+Clone The repositories
+=======================
+1. type `git clone https://github.com/hong3021/AssignmentFace.gi`t in terminal at project directory 
+
+Create vitual environment
+=========================
+1. Refrence to this link `https://docs.python.org/3/library/venv.html` to create vitual environment
+2. Alternative way to create vitual environment : clone repositories to a empty pycharm project 
 
 Gether Data
 ===================
