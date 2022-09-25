@@ -33,11 +33,11 @@ while True:
     for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
         id, confident = recognizer.predict(gray_image[y : y + h, x : x + w])
-        if id and confident >= 40:
+        if id:
             cv2.putText(
                 img,
-                #(names[id - 1] + ' ' + str(confident)),
-                (names[id - 1]),
+                (names[id - 1] + ' ' + str(confident)),
+                # (names[id - 1]),
 
                 (x, y - 4),
                 cv2.FONT_HERSHEY_SIMPLEX,

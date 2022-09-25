@@ -26,15 +26,18 @@ def save_image(image, user_name, img_count):
 
 def process_photo(user_name):
     path = []
+
     for image in os.listdir("../../dataset/{}".format(user_name)):
         path_string = os.path.join("../../dataset/{}".format(user_name), image)
         path.append(path_string)
     for img_path in path:
+
         image = cv2.imread(img_path)
 
         image_sharpened = cv2.filter2D(src=image, ddepth=-1, kernel=shrp_kernel)
         image_blurred = cv2.blur(src=image_sharpened, ksize=(5, 5))
-        grayImg = cv2.cvtColor(image_blurred, cv2.COLOR_BGR2GRAY)
+        image_convert = cv2.convertScaleAbs(image_blurred, alpha=0.6, beta=20)
+        grayImg = cv2.cvtColor(image_convert, cv2.COLOR_BGR2GRAY)
         Path("../../Train/").mkdir(parents=True, exist_ok=True)
         id = img_path.split('\\')[1].split('_')[1]
         cv2.imwrite("../../Train/recon-train_{}_{}.jpg".format(id, str(uuid.uuid1())), grayImg)
@@ -48,13 +51,13 @@ class Capture:
         self.count = 1
         print("Enter the name of the person: ")
         self.userName = input()
+        file = open('namelist.txt', 'a')
+        file.writelines(self.userName + '\n')
+        file.close()
 
     def capture_photo(self):
         print("[INFO] Video Capture is now starting please stay still...")
         time.sleep(3)
-        file = open('namelist.txt', 'a')
-        file.writelines(self.userName + '\n')
-        file.close()
 
         while True:
             # Capture the frame/image
@@ -89,6 +92,7 @@ class Capture:
                 if self.count <= self.imgCount:
                     roi_img = originalImg[coords[1] : coords[1] + coords[3], coords[0] : coords[0] + coords[2]]
                     save_image(roi_img, self.userName, self.count)
+
                     self.count += 1
                 else:
                     break
